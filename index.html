@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Issues Tracker</title>
+
+    <!-- font awesome icon  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- daisy ui  and tailwindcss -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- import geist google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Syne:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- custom  css file  -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-[#F8FAFC] py-20">
+    <section
+      class="max-w-lg p-8 rounded-lg bg-white mx-auto space-y-5 shadow-lg flex items-center flex-col"
+    >
+      <div>
+        <img
+          class="mx-auto mb-5"
+          src="./assets/github-logo.png"
+          alt="logo image"
+        />
+        <h2 class="text-center font-semibold text-2xl text-[#1F2937]">
+          GitHub Issues Tracker
+        </h2>
+        <p class="text-center text-[#64748B]">Sign in to manage your issues</p>
+      </div>
+      <fieldset class="fieldset rounded-box w-xs p-4">
+        <label class="label">Username</label>
+        <input type="text" class="input" placeholder="Enter Username" />
+
+        <label class="label">Password</label>
+        <input type="password" class="input" placeholder="Enter Password" />
+
+        <button class="btn btn-primary mt-4">Sing In</button>
+      </fieldset>
+
+      <div class="flex items-center justify-evenly gap-3">
+        <span class="bg-[#b1b5bb] w-28 h-px inline-block"></span>
+        <span class="text-base text-[#1F2937]">OR</span>
+        <span class="bg-[#b1b5bb] w-28 h-px inline-block"></span>
+      </div>
+
+      <div class="flex items-center flex-col">
+        <p class="text-[14px] text-[#64748B]">Demo Credentials:</p>
+        <div class="flex items-center flex-col">
+          <p class="text-[#1F2937]">
+            <span class="font-semibold">h: </span> <span>admin</span>
+          </p>
+          <p>
+            <span class="font-semibold">Password:</span> <span> admin123</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
