@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page | GitHub Issues Tracker</title>
+
+    <!-- font awesome icon  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- daisy ui  and tailwindcss -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- import geist google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Syne:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- custom  css file  -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-[#F8FAFC] min-h-[100vh]">
+    <header
+      class="navbar bg-white shadow-sm flex justify-between mb-4 sm:mb-10"
+    >
+      <div class="flex items-center gap-2">
+        <div class="w-6 sm:w-9 inline-block">
+          <img src="./assets/github-logo.png" alt="" srcset="" />
+        </div>
+        <span class="text-lg sm:text-2xl font-semibold"
+          >GitHub Issues Tracker</span
+        >
+      </div>
+
+      <div class="flex gap-2 items-center relative">
+        <span class="absolute left-2 z-30 text-base"
+          ><i class="fa-solid fa-magnifying-glass text-[#64748B]"></i
+        ></span>
+        <input
+          type="text"
+          placeholder="Search issues..."
+          class="input input-bordered w-60 max-md:w-40 pl-7"
+        />
+        <button class="btn btn-primary px-1">
+          <span class="text-xl">+</span> New issue
+        </button>
+      </div>
+    </header>
+
+    <!-- name of each tab group should be unique -->
+    <section
+      class="tabs tabs-box shadow-sm bg-white flex gap-4 mb-5 p-4 max-w-6xl mx-auto"
+    >
+      <button
+        type="button"
+        name="my_tabs_6"
+        class="btn px-7 font-medium color-secndery"
+      >
+        All
+      </button>
+      <button
+        type="button"
+        name="my_tabs_6"
+        class="btn font-medium color-secndery"
+      >
+        Open
+      </button>
+      <button
+        type="button"
+        name="my_tabs_6"
+        class="btn font-medium color-secndery"
+      >
+        Closed
+      </button>
+    </section>
+
+    <!-- main box -->
+    <section
+      id="isseus-conteiner"
+      class="flex flex-col gap-3 max-w-6xl mx-auto"
+    >
+      <div
+        class="rounded-t-sm rounded-tr-sm p-2 bg-white flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div class="w-8">
+            <img src="./assets/Aperture.png" alt="image" />
+          </div>
+          <div class="space-y-1">
+            <h3 class="text-xl color-primary font-semibold">50 Issues</h3>
+            <p class="color-secndery">Track and manage your project issues</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <p>
+            <span
+              class="w-2.5 h-2.5 rounded-full inline-block bg-[#00A96E]"
+            ></span>
+            <span class="color-primary">Open</span>
+          </p>
+          <p>
+            <span
+              class="w-2.5 h-2.5 rounded-full inline-block bg-[#A855F7]"
+            ></span>
+            <span>Closeed</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- issue cards -->
+      <div class="grid grid-cols-4 gap-3">
+        <div
+          class="row-span-1 col-span-1 shadow-md border-to-green p-4 rounded-md space-y-2"
+        >
+          <div class="flex items-center justify-between">
+            <div class="w-6">
+              <img src="./assets/Open-Status.png" alt="open status image" />
+            </div>
+            <span
+              class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
+              >high</span
+            >
+          </div>
+          <h3 class="font-semibold text-[14px] capitalize">
+            Fix h menu on mobile devices
+          </h3>
+          <p class="text-[12px] color-secndery">
+            The navigation menu doesn't collapse properly on mobile devices...
+          </p>
+
+          <div>
+            <span
+              class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
+              >bug</span
+            >
+            <span
+              class="uppercase py-px text-yellow-500 px-4 border border-yellow-300 shadow-sm bg-[#fefeec] rounded-xl text-xs font-medium"
+              >help wanted</span
+            >
+          </div>
+          <!-- <hr class="w-full h-[0.5px] bg-slate-600" /> -->
+          <div class="border-t-[0.2px] border-t-[#64748B] py-3 space-y-2">
+            <p class="text-xs color-secndery">#1 by john_doe</p>
+            <p class="text-xs color-secndery">1/15/2024</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

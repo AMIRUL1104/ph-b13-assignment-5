@@ -5,15 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Issues Tracker</title>
 
-    <!-- font awesome icon  -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
     <!-- daisy ui  and tailwindcss -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
@@ -31,7 +22,7 @@
     />
 
     <!-- custom  css file  -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body class="bg-[#F8FAFC] py-20">
     <section
@@ -49,13 +40,23 @@
         <p class="text-center text-[#64748B]">Sign in to manage your issues</p>
       </div>
       <fieldset class="fieldset rounded-box w-xs p-4">
-        <label class="label">Username</label>
-        <input type="text" class="input" placeholder="Enter Username" />
+        <label class="label text-[#1F2937]">Username</label>
+        <input
+          type="text"
+          id="Username"
+          class="input mb-4"
+          placeholder="Enter Username"
+        />
 
-        <label class="label">Password</label>
-        <input type="password" class="input" placeholder="Enter Password" />
+        <label class="label text-[#1F2937]">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="input"
+          placeholder="Enter Password"
+        />
 
-        <button class="btn btn-primary mt-4">Sing In</button>
+        <button id="singIn" class="btn btn-primary mt-4">Sing In</button>
       </fieldset>
 
       <div class="flex items-center justify-evenly gap-3">
@@ -68,7 +69,7 @@
         <p class="text-[14px] text-[#64748B]">Demo Credentials:</p>
         <div class="flex items-center flex-col">
           <p class="text-[#1F2937]">
-            <span class="font-semibold">h: </span> <span>admin</span>
+            <span class="font-semibold">Username: </span> <span>admin</span>
           </p>
           <p>
             <span class="font-semibold">Password:</span> <span> admin123</span>
@@ -76,5 +77,7 @@
         </div>
       </div>
     </section>
+
+    <script src="./script.js"></script>
   </body>
 </html>

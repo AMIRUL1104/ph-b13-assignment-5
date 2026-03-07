@@ -1,3 +1,20 @@
 *{
     font-family: "Geist", sans-serif;
 }
+
+.color-primary{
+    color: #1F2937;
+}
+.color-secndery{
+    color: #64748B;
+}
+.color-active{
+    color: #4A00FF;
+}
+
+.border-to-purple{
+    border-top: 4px solid #A855F7 ;
+}
+.border-to-green{
+    border-top: 4px solid #00A96E ;
+}
