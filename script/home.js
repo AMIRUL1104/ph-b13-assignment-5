@@ -28,7 +28,6 @@ const fetchAllIssues = (status) => {
     tab.classList.remove("bg-color-active");
   }
   selectedTab.classList.add("bg-color-active");
-
   // fetch all data
   fetch(url)
     .then((res) => res.json())
@@ -41,13 +40,11 @@ const fetchAllIssues = (status) => {
       let datas = data.data;
       if (status === "all") {
         displayIssues(datas);
-      } else if (status === "open" || status === "closed") {
+      } else {
         let issues = datas.filter((item) => {
           return item.status === status;
         });
         displayIssues(issues);
-      } else {
-        displayIssues(datas);
       }
     });
 };
@@ -222,3 +219,35 @@ const modalDetails = (data) => {
       </div>
       `;
 };
+
+let debounceTimer;
+
+const search = document.getElementById("search");
+
+search.addEventListener("change", function (e) {
+  // active  loading spinner
+  spinner.classList.remove("hidden");
+  main_issue_box.classList.add("hidden");
+
+  const value = e.target.value;
+  const cleanValue = value.trim().toLowerCase();
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${cleanValue}`;
+
+  clearTimeout(debounceTimer);
+  count_box.innerHTML = "";
+  isseus_conteiner.innerHTML = "";
+
+  debounceTimer = setTimeout(() => {
+    // fetch all data
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        // clear recent data from html
+
+        // call displayIssues function to show matched data with seelected tab or search value
+        let datas = data.data;
+
+        displayIssues(datas);
+      });
+  }, 500);
+});
