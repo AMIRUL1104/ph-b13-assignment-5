@@ -54,6 +54,9 @@ const displayIssues = (data) => {
   data.forEach((issue) => {
     let card = document.createElement("div");
     card.id = issue.id;
+    // console.log(issue.id);
+
+    card.onclick = handleDetails;
     card.classList.add(
       "row-span-1",
       "col-span-1",
@@ -107,7 +110,7 @@ const displayIssues = (data) => {
                 >help wanted</span
               >
             </div>
-            <!-- <hr class="w-full h-[0.5px] bg-slate-600" /> -->
+        
             <div class="border-t-[0.2px] border-t-[#64748B] py-3 space-y-2">
               <p class="text-xs color-secndery">${issue.author}</p>
               <p class="text-xs color-secndery">${issue.createdAt}</p>
@@ -124,3 +127,104 @@ fetchAllIssues("all");
 function handleTab(status) {
   fetchAllIssues(status);
 }
+
+const handleDetails = (e) => {
+  const id = e.currentTarget.id;
+  // console.log(id);
+
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  // console.log(url);
+
+  my_modal_1.showModal();
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      modalDetails(data.data);
+    });
+};
+
+const modalDetails = (data) => {
+  const my_modal_1 = document.getElementById("my_modal_1");
+  my_modal_1.innerHTML = "";
+
+  // {
+  //     "id": 2,
+  //     "title": "Add dark mode support",
+  //     "description": "Users are requesting a dark mode option. This would improve accessibility and user experience.",
+  //     "status": "open",
+  //     "labels": [
+  //         "enhancement",
+  //         "good first issue"
+  //     ],
+  //     "priority": "medium",
+  //     "author": "sarah_dev",
+  //     "assignee": "",
+  //     "createdAt": "2024-01-14T14:20:00Z",
+  //     "updatedAt": "2024-01-16T09:15:00Z"
+  // }
+
+  my_modal_1.innerHTML = `
+           <div class="modal-box space-y-5">
+        <div>
+          <h3 class="text-2xl color-primary font-bold">${data.title} </h3>
+
+          <div class="flex items-center gap-2">
+            <span
+              class="bg-green-700 text-white px-2 py-1 text-xs capitalize rounded-xl"
+              >${data.status}</span
+            >
+            <span
+              class="w-1.5 h-1.5 rounded-full inline-block bg-[#64748B]"
+            ></span>
+
+            <span class="px-2 py-1 text-xs text-[#64748B]">
+              opened by ${data.author}
+            </span>
+
+            <span
+              class="w-1.5 h-1.5 rounded-full inline-block bg-[#64748B]"
+            ></span>
+
+            <span class="px-2 py-1 text-xs text-[#64748B]"> ${data.createdAt} </span>
+          </div>
+        </div>
+
+        <div>
+          <span
+            class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
+            >bug</span
+          >
+          <span
+            class="uppercase py-px text-yellow-500 px-4 border border-yellow-300 shadow-sm bg-[#fefeec] rounded-xl text-xs font-medium"
+            >help wanted</span
+          >
+        </div>
+
+        <p class="text-base color-secndery">
+          ${data.description}
+        </p>
+
+        <div class="flex items-center justify-start gap-30 bg-slate-100 p-4">
+          <div class="flex items-start justify-between flex-col">
+            <p class="text-base color-secndery">Assignee:</p>
+            <p class="text-base color-primary font-semibold">${data.assignee}</p>
+          </div>
+          <div class="flex items-start justify-between flex-col">
+            <p class="text-base color-secndery">Priority</p>
+            <p
+              class="bg-red-700 text-white px-2 py-1 text-xs uppercase rounded-xl font-semibold"
+            >
+              ${data.priority}
+            </p>
+          </div>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+      `;
+};
