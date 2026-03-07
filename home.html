@@ -68,6 +68,7 @@
       <button
         type="button"
         name="my_tabs_6"
+        onclick="handleTab('all')"
         class="btn px-7 font-medium color-secndery"
       >
         All
@@ -75,6 +76,7 @@
       <button
         type="button"
         name="my_tabs_6"
+        onclick="handleTab('open')"
         class="btn font-medium color-secndery"
       >
         Open
@@ -82,6 +84,7 @@
       <button
         type="button"
         name="my_tabs_6"
+        onclick="handleTab('closed')"
         class="btn font-medium color-secndery"
       >
         Closed
@@ -89,11 +92,9 @@
     </section>
 
     <!-- main box -->
-    <section
-      id="isseus-conteiner"
-      class="flex flex-col gap-3 max-w-6xl mx-auto"
-    >
+    <section id="" class="flex flex-col gap-3 max-w-6xl mx-auto">
       <div
+        id="count-box"
         class="rounded-t-sm rounded-tr-sm p-2 bg-white flex items-center justify-between"
       >
         <div class="flex items-center gap-3">
@@ -123,7 +124,7 @@
       </div>
 
       <!-- issue cards -->
-      <div class="grid grid-cols-4 gap-3">
+      <div id="isseus-conteiner" class="grid grid-cols-4 gap-3">
         <div
           class="row-span-1 col-span-1 shadow-md border-to-green p-4 rounded-md space-y-2"
         >
@@ -161,5 +162,7 @@
         </div>
       </div>
     </section>
+
+    <script src="./script/home.js"></script>
   </body>
 </html>
