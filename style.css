@@ -11,10 +11,19 @@
 .color-active{
     color: #4A00FF;
 }
+.bg-color-active{
+    background-color: #4A00FF;
+    color: white;
+}
+
+
 
 .border-to-purple{
     border-top: 4px solid #A855F7 ;
 }
 .border-to-green{
     border-top: 4px solid #00A96E ;
+}
+.hidden{
+    display: none;
 }

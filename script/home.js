@@ -1,27 +1,60 @@
+const labelsShower = (arr) => {
+  const elements = arr.map(
+    (el) => ` <span
+            class="uppercase py-px ${el === "bug" ? "text-red-500 bg-[#FEECEC] border-red-300" : "bg-[#fefeec] border-yellow-300 text-yellow-500"}  px-4 border  shadow-sm  rounded-xl text-xs font-medium"
+            >${el}</span
+          >`,
+  );
+
+  return elements.join(" ");
+};
+
 const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
-let isseus_conteiner = document.getElementById("isseus-conteiner");
-let count_box = document.getElementById("count-box");
+const isseus_conteiner = document.getElementById("isseus-conteiner");
+const count_box = document.getElementById("count-box");
+const main_issue_box = document.getElementById("main-issue-box");
+const spinner = document.getElementById("spinner");
+
+const status_tab = document.getElementsByClassName("status-tab");
 
 const fetchAllIssues = (status) => {
+  // active  loading spinner
+  spinner.classList.remove("hidden");
+  main_issue_box.classList.add("hidden");
+
+  // selected tab background color shower
+  const selectedTab = document.getElementById(status);
+  for (let tab of status_tab) {
+    tab.classList.remove("bg-color-active");
+  }
+  selectedTab.classList.add("bg-color-active");
+
+  // fetch all data
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      // clear recent data from html
       count_box.innerHTML = "";
       isseus_conteiner.innerHTML = "";
-      let datas = data.data;
 
-      if (status !== "all") {
+      // call displayIssues function to show matched data with seelected tab or search value
+      let datas = data.data;
+      if (status === "all") {
+        displayIssues(datas);
+      } else if (status === "open" || status === "closed") {
         let issues = datas.filter((item) => {
-          return item.status == status;
+          return item.status === status;
         });
         displayIssues(issues);
       } else {
-        displayIssues(data.data);
+        displayIssues(datas);
       }
     });
 };
 
+// this function show the data in UI
 const displayIssues = (data) => {
+  // display the number of matched issue
   count_box.innerHTML = `
 
         <div class="flex items-center gap-3">
@@ -51,39 +84,25 @@ const displayIssues = (data) => {
     
     `;
 
+  // display matched issues
   data.forEach((issue) => {
     let card = document.createElement("div");
     card.id = issue.id;
-    // console.log(issue.id);
-
     card.onclick = handleDetails;
     card.classList.add(
       "row-span-1",
       "col-span-1",
       "shadow-md",
-      "border-to-green",
       "p-4",
       "rounded-md",
       "space-y-2",
     );
 
-    // {
-    //     "id": 1,
-    //     "title": "Fix navigation menu on mobile devices",
-    //     "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-    //     "status": "open",
-    //     "labels": [
-    //         "bug",
-    //         "help wanted"
-    //     ],
-    //     "priority": "high",
-    //     "author": "john_doe",
-    //     "assignee": "jane_smith",
-    //     "createdAt": "2024-01-15T10:30:00Z",
-    //     "updatedAt": "2024-01-15T10:30:00Z"
-    // }
-    card.innerHTML = `
+    issue.status === "open"
+      ? `${card.classList.add("border-to-green")}`
+      : `${card.classList.add("border-to-purple")}`;
 
+    card.innerHTML = `
             <div class="flex items-center justify-between">
               <div class="w-6">
                 <img src="./assets/Open-Status.png" alt="open status image" />
@@ -93,35 +112,34 @@ const displayIssues = (data) => {
                 >${issue.priority}</span
               >
             </div>
+
             <h3 class="font-semibold text-[14px] capitalize">
               ${issue.title}
             </h3>
+
             <p class="text-[12px] color-secndery">
               ${issue.description}
             </p>
 
-            <div>
-              <span
-                class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
-                >bug</span
-              >
-              <span
-                class="uppercase py-px text-yellow-500 px-4 border border-yellow-300 shadow-sm bg-[#fefeec] rounded-xl text-xs font-medium"
-                >help wanted</span
-              >
+            <div class=" fle flex-wrap gap-3  ">
+             ${labelsShower(issue.labels)}
             </div>
         
             <div class="border-t-[0.2px] border-t-[#64748B] py-3 space-y-2">
               <p class="text-xs color-secndery">${issue.author}</p>
               <p class="text-xs color-secndery">${issue.createdAt}</p>
             </div>
-
         `;
 
     isseus_conteiner.appendChild(card);
+
+    // remove spinner
+    main_issue_box.classList.remove("hidden");
+    spinner.classList.add("hidden");
   });
 };
 
+// call fatch function for first render
 fetchAllIssues("all");
 
 function handleTab(status) {
@@ -130,10 +148,8 @@ function handleTab(status) {
 
 const handleDetails = (e) => {
   const id = e.currentTarget.id;
-  // console.log(id);
 
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
-  // console.log(url);
 
   my_modal_1.showModal();
 
@@ -147,22 +163,6 @@ const handleDetails = (e) => {
 const modalDetails = (data) => {
   const my_modal_1 = document.getElementById("my_modal_1");
   my_modal_1.innerHTML = "";
-
-  // {
-  //     "id": 2,
-  //     "title": "Add dark mode support",
-  //     "description": "Users are requesting a dark mode option. This would improve accessibility and user experience.",
-  //     "status": "open",
-  //     "labels": [
-  //         "enhancement",
-  //         "good first issue"
-  //     ],
-  //     "priority": "medium",
-  //     "author": "sarah_dev",
-  //     "assignee": "",
-  //     "createdAt": "2024-01-14T14:20:00Z",
-  //     "updatedAt": "2024-01-16T09:15:00Z"
-  // }
 
   my_modal_1.innerHTML = `
            <div class="modal-box space-y-5">
@@ -191,14 +191,8 @@ const modalDetails = (data) => {
         </div>
 
         <div>
-          <span
-            class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
-            >bug</span
-          >
-          <span
-            class="uppercase py-px text-yellow-500 px-4 border border-yellow-300 shadow-sm bg-[#fefeec] rounded-xl text-xs font-medium"
-            >help wanted</span
-          >
+          ${labelsShower(data.labels)}
+          
         </div>
 
         <p class="text-base color-secndery">

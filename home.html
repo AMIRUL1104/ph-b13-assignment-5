@@ -52,6 +52,7 @@
         ></span>
         <input
           type="text"
+          id="search"
           placeholder="Search issues..."
           class="input input-bordered w-60 max-md:w-40 pl-7"
         />
@@ -67,105 +68,55 @@
     >
       <button
         type="button"
+        id="all"
         name="my_tabs_6"
         onclick="handleTab('all')"
-        class="btn px-7 font-medium color-secndery"
+        class="btn px-7 font-medium color-secndery bg-color-active status-tab"
       >
         All
       </button>
       <button
         type="button"
+        id="open"
         name="my_tabs_6"
         onclick="handleTab('open')"
-        class="btn font-medium color-secndery"
+        class="btn font-medium color-secndery status-tab"
       >
         Open
       </button>
       <button
         type="button"
+        id="closed"
         name="my_tabs_6"
         onclick="handleTab('closed')"
-        class="btn font-medium color-secndery"
+        class="btn font-medium color-secndery status-tab"
       >
         Closed
       </button>
     </section>
 
     <!-- main box -->
-    <section id="" class="flex flex-col gap-3 max-w-6xl mx-auto">
+    <section id="main-issue-box" class="flex flex-col gap-3 max-w-6xl mx-auto">
+      <!-- issues counter -->
       <div
         id="count-box"
         class="rounded-t-sm rounded-tr-sm p-2 bg-white flex items-center justify-between"
-      >
-        <div class="flex items-center gap-3">
-          <div class="w-8">
-            <img src="./assets/Aperture.png" alt="image" />
-          </div>
-          <div class="space-y-1">
-            <h3 class="text-xl color-primary font-semibold">50 Issues</h3>
-            <p class="color-secndery">Track and manage your project issues</p>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <p>
-            <span
-              class="w-2.5 h-2.5 rounded-full inline-block bg-[#00A96E]"
-            ></span>
-            <span class="color-primary">Open</span>
-          </p>
-          <p>
-            <span
-              class="w-2.5 h-2.5 rounded-full inline-block bg-[#A855F7]"
-            ></span>
-            <span>Closeed</span>
-          </p>
-        </div>
-      </div>
+      ></div>
 
       <!-- issue cards -->
-      <div id="isseus-conteiner" class="grid grid-cols-4 gap-3">
-        <div
-          class="row-span-1 col-span-1 shadow-md border-to-green p-4 rounded-md space-y-2"
-        >
-          <div class="flex items-center justify-between">
-            <div class="w-6">
-              <img src="./assets/Open-Status.png" alt="open status image" />
-            </div>
-            <span
-              class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
-              >high</span
-            >
-          </div>
-          <h3 class="font-semibold text-[14px] capitalize">
-            Fix h menu on mobile devices
-          </h3>
-          <p class="text-[12px] color-secndery">
-            The navigation menu doesn't collapse properly on mobile devices...
-          </p>
-
-          <div>
-            <span
-              class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
-              >bug</span
-            >
-            <span
-              class="uppercase py-px text-yellow-500 px-4 border border-yellow-300 shadow-sm bg-[#fefeec] rounded-xl text-xs font-medium"
-              >help wanted</span
-            >
-          </div>
-          <!-- <hr class="w-full h-[0.5px] bg-slate-600" /> -->
-          <div class="border-t-[0.2px] border-t-[#64748B] py-3 space-y-2">
-            <p class="text-xs color-secndery">#1 by john_doe</p>
-            <p class="text-xs color-secndery">1/15/2024</p>
-          </div>
-        </div>
-      </div>
+      <div id="isseus-conteiner" class="grid grid-cols-4 gap-3"></div>
     </section>
 
+    <!-- spinner  -->
+
+    <div id="spinner" class="mx-auto flex items-center justify-center">
+      <span class="loading loading-spinner loading-xl"></span>
+    </div>
+
     <!-- Open the modal using ID.showModal() method -->
-    <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
     <dialog id="my_modal_1" class="modal"></dialog>
+
+    <!-- javascript files -->
     <script src="./script/home.js"></script>
   </body>
 </html>
