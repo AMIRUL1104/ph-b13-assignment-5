@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page | GitHub Issues Tracker</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/Aperture.png"
+      type="image/x-icon"
+    />
 
     <!-- font awesome icon  -->
     <link
@@ -64,14 +69,14 @@
 
     <!-- name of each tab group should be unique -->
     <section
-      class="tabs tabs-box shadow-sm bg-white flex gap-4 mb-5 p-4 max-w-6xl mx-auto"
+      class="tabs tabs-box shadow-sm bg-white flex gap-4 mb-5 p-4 max-w-7xl mx-auto sticky top-0 z-20"
     >
       <button
         type="button"
         id="all"
         name="my_tabs_6"
         onclick="handleTab('all')"
-        class="btn px-7 font-medium color-secndery bg-color-active status-tab"
+        class="btn font-medium color-secndery bg-color-active status-tab w-24"
       >
         All
       </button>
@@ -80,7 +85,7 @@
         id="open"
         name="my_tabs_6"
         onclick="handleTab('open')"
-        class="btn font-medium color-secndery status-tab"
+        class="btn font-medium color-secndery status-tab w-24"
       >
         Open
       </button>
@@ -89,22 +94,25 @@
         id="closed"
         name="my_tabs_6"
         onclick="handleTab('closed')"
-        class="btn font-medium color-secndery status-tab"
+        class="btn font-medium color-secndery status-tab w-24"
       >
         Closed
       </button>
     </section>
 
     <!-- main box -->
-    <section id="main-issue-box" class="flex flex-col gap-3 max-w-6xl mx-auto">
+    <section
+      id="main-issue-box"
+      class="flex flex-col gap-3 max-w-7xl mx-auto pb-5 px-5 shadow-sm relative"
+    >
       <!-- issues counter -->
       <div
         id="count-box"
-        class="rounded-t-sm rounded-tr-sm p-2 bg-white flex items-center justify-between"
+        class="rounded-t-sm shadow-sm rounded-tr-sm p-2 bg-white flex items-center justify-between absolute w-full top-0 left-0"
       ></div>
 
       <!-- issue cards -->
-      <div id="isseus-conteiner" class="grid grid-cols-4 gap-3"></div>
+      <div id="isseus-conteiner" class="grid grid-cols-4 gap-3 mt-24"></div>
     </section>
 
     <!-- spinner  -->

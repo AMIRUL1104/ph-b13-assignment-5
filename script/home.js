@@ -1,12 +1,50 @@
 const labelsShower = (arr) => {
-  const elements = arr.map(
-    (el) => ` <span
-            class="uppercase py-px ${el === "bug" ? "text-red-500 bg-[#FEECEC] border-red-300" : "bg-[#fefeec] border-yellow-300 text-yellow-500"}  px-4 border  shadow-sm  rounded-xl text-xs font-medium"
-            >${el}</span
-          >`,
-  );
+  const elements = arr.map((el) => {
+    if (el.trim().toLowerCase() === "bug") {
+      return `<span
+               class=" inline-flex flex-row items-center gap-1 uppercase text-red-500 bg-[#FEECEC] border-red-300 px-1 mx-1 border shadow-sm rounded-xl text-[10px] font-medium"
+               ><img src="./assets/Vector.png" alt="open status image" /> ${el}
+          </span>`;
+    } else if (el.trim().toLowerCase() === "help wanted") {
+      return `<span
+               class="inline-flex flex-row items-center gap-1 uppercase text-yellow-500 bg-[#fefeec] border-yellow-300 px-1 mx-1 border shadow-sm rounded-xl text-[10px] font-medium"
+               > <img src="./assets/Vector (1).png" alt="open status image" />${el}
+        </span>`;
+    } else {
+      return `<span
+               class=" inline-flex flex-row items-center gap-1 uppercase text-green-500 bg-[#ecfeef] border-green-300 px-1 mx-1 border shadow-sm rounded-xl text-[10px] font-medium"
+               ><img src="./assets/Vector (2).png" alt="open status image" />${el}
+        </span>`;
+    }
+  });
 
   return elements.join(" ");
+};
+
+const priorityShower = (el) => {
+  if (el.trim().toLowerCase() === "high") {
+    return `<span
+               class="uppercase text-red-500 bg-[#FEECEC] border-red-300 px-2 mx-1 border shadow-sm rounded-xl text-[12px] font-medium"
+               >${el}
+          </span>`;
+  } else if (el.trim().toLowerCase() === "medium") {
+    return `<span
+               class="uppercase text-yellow-500 bg-[#fefeec] border-yellow-300 px-2 mx-1 border shadow-sm rounded-xl text-[12px] font-medium"
+               >${el}
+        </span>`;
+  } else {
+    return `<span
+               class="uppercase text-slate-500 bg-[#d6d6d6] border-slate-300 px-2 mx-1 border shadow-sm rounded-xl text-[12px] font-medium"
+               >${el}
+        </span>`;
+  }
+};
+const statusImgDisplayer = (el) => {
+  if (el.trim().toLowerCase() === "open") {
+    return `  <img src="./assets/Open-Status.png" alt="open status image" />`;
+  } else {
+    return `  <img src="./assets/Closed-Status.png" alt="closed status image" />`;
+  }
 };
 
 const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
@@ -102,12 +140,10 @@ const displayIssues = (data) => {
     card.innerHTML = `
             <div class="flex items-center justify-between">
               <div class="w-6">
-                <img src="./assets/Open-Status.png" alt="open status image" />
+              ${statusImgDisplayer(issue.status)}
+               
               </div>
-              <span
-                class="uppercase py-px text-red-500 px-4 border border-red-300 shadow-sm bg-[#FEECEC] rounded-xl text-xs font-medium"
-                >${issue.priority}</span
-              >
+              ${priorityShower(issue.priority)}
             </div>
 
             <h3 class="font-semibold text-[14px] capitalize">
@@ -203,11 +239,7 @@ const modalDetails = (data) => {
           </div>
           <div class="flex items-start justify-between flex-col">
             <p class="text-base color-secndery">Priority</p>
-            <p
-              class="bg-red-700 text-white px-2 py-1 text-xs uppercase rounded-xl font-semibold"
-            >
-              ${data.priority}
-            </p>
+            ${priorityShower(data.priority)}
           </div>
         </div>
         <div class="modal-action">
@@ -224,27 +256,25 @@ let debounceTimer;
 
 const search = document.getElementById("search");
 
-search.addEventListener("change", function (e) {
-  // active  loading spinner
-  spinner.classList.remove("hidden");
-  main_issue_box.classList.add("hidden");
-
+search.addEventListener("input", function (e) {
   const value = e.target.value;
   const cleanValue = value.trim().toLowerCase();
-  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${cleanValue}`;
 
   clearTimeout(debounceTimer);
-  count_box.innerHTML = "";
-  isseus_conteiner.innerHTML = "";
 
   debounceTimer = setTimeout(() => {
-    // fetch all data
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${cleanValue}`;
+
+    // active loading spinner
+    spinner.classList.remove("hidden");
+    main_issue_box.classList.add("hidden");
+
+    count_box.innerHTML = "";
+    isseus_conteiner.innerHTML = "";
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // clear recent data from html
-
-        // call displayIssues function to show matched data with seelected tab or search value
         let datas = data.data;
 
         displayIssues(datas);
