@@ -252,13 +252,12 @@ const modalDetails = (data) => {
 };
 
 let debounceTimer;
-
 const search = document.getElementById("search");
 
 search.addEventListener("input", function (e) {
   const value = e.target.value;
   const cleanValue = value.trim().toLowerCase();
-
+  if (!cleanValue) return;
   clearTimeout(debounceTimer);
 
   debounceTimer = setTimeout(() => {
