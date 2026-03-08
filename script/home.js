@@ -20,7 +20,6 @@ const labelsShower = (arr) => {
 
   return elements.join(" ");
 };
-
 const priorityShower = (el) => {
   if (el.trim().toLowerCase() === "high") {
     return `<span
@@ -97,8 +96,8 @@ const displayIssues = (data) => {
             <img src="./assets/Aperture.png" alt="image" />
           </div>
           <div class="space-y-1">
-            <h3 class="text-xl color-primary font-semibold">${data.length} Issues</h3>
-            <p class="color-secndery">Track and manage your project issues</p>
+            <h3 class="text-xl color-primary font-semibold max-sm:text-lg">${data.length} Issues</h3>
+            <p class="color-secndery max-sm:hidden">Track and manage your project issues</p>
           </div>
         </div>
 
@@ -200,9 +199,9 @@ const modalDetails = (data) => {
   my_modal_1.innerHTML = `
            <div class="modal-box space-y-5">
         <div>
-          <h3 class="text-2xl color-primary font-bold">${data.title} </h3>
+          <h3 class="text-2xl max-sm:text-base color-primary font-bold">${data.title} </h3>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center max-sm:flex-wrap gap-2">
             <span
               class="bg-green-700 text-white px-2 py-1 text-xs capitalize rounded-xl"
               >${data.status}</span
@@ -232,7 +231,7 @@ const modalDetails = (data) => {
           ${data.description}
         </p>
 
-        <div class="flex items-center justify-start gap-30 bg-slate-100 p-4">
+        <div class="flex items-center justify-start gap-10 sm:gap-30 bg-slate-100 p-4">
           <div class="flex items-start justify-between flex-col">
             <p class="text-base color-secndery">Assignee:</p>
             <p class="text-base color-primary font-semibold">${data.assignee}</p>
@@ -244,7 +243,7 @@ const modalDetails = (data) => {
         </div>
         <div class="modal-action">
           <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
+           
             <button class="btn">Close</button>
           </form>
         </div>

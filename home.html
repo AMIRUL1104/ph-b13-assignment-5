@@ -38,9 +38,9 @@
     <!-- custom  css file  -->
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="bg-[#F8FAFC] min-h-[100vh]">
+  <body class="bg-[#F8FAFC] min-h-[100vh] max-md:px-2.5">
     <header
-      class="navbar bg-white shadow-sm flex justify-between mb-4 sm:mb-10"
+      class="navbar bg-white shadow-sm flex justify-between max-sm:flex-col max-sm:gap-4 items-center mb-2 sm:mb-10 sticky top-0 z-20 max-w-7xl mx-auto"
     >
       <div class="flex items-center gap-2">
         <div class="w-6 sm:w-9 inline-block">
@@ -59,9 +59,9 @@
           type="text"
           id="search"
           placeholder="Search issues..."
-          class="input input-bordered w-60 max-md:w-40 pl-7"
+          class="input input-bordered w-60 max-md:w-40 pl-7 max-sm:w-32 py-1"
         />
-        <button class="btn btn-primary px-1">
+        <button class="btn btn-primary px-1 max-sm:py-1">
           <span class="text-xl">+</span> New issue
         </button>
       </div>
@@ -69,14 +69,14 @@
 
     <!-- name of each tab group should be unique -->
     <section
-      class="tabs tabs-box shadow-sm bg-white flex gap-4 mb-5 p-4 max-w-7xl mx-auto sticky top-0 z-20"
+      class="tabs tabs-box shadow-sm bg-white flex max-sm:justify-center max-sm:items-center gap-4 mb-5 p-1 sm:p-4 max-w-7xl mx-auto"
     >
       <button
         type="button"
         id="all"
         name="my_tabs_6"
         onclick="handleTab('all')"
-        class="btn font-medium color-secndery bg-color-active status-tab w-24"
+        class="btn font-medium color-secndery bg-color-active status-tab w-16 sm:w-24"
       >
         All
       </button>
@@ -112,7 +112,10 @@
       ></div>
 
       <!-- issue cards -->
-      <div id="isseus-conteiner" class="grid grid-cols-4 gap-3 mt-24"></div>
+      <div
+        id="isseus-conteiner"
+        class="grid gap-3 mt-24 grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
+      ></div>
     </section>
 
     <!-- spinner  -->
